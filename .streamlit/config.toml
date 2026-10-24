@@ -1,0 +1,9 @@
+[server]
+maxUploadSize = 50   # Supabase free plan allows 50 MB per file
+
+[theme]
+base = "light"
+primaryColor = "#2f6f62"
+backgroundColor = "#eceee9"
+secondaryBackgroundColor = "#f8f9f6"
+textColor = "#1b2a2f"
