@@ -112,7 +112,7 @@ files = store.search_files(q) if q else store.list_files(ss.folder)
 topics = {t["id"]: t["name"] for t in store.topics()}
 
 # ---- table
-W = [5, 2, 1, 1, 2]
+W = [5, 2, 1.6, 1, 2]
 table_header(["Name", "Topic", "Status", "Size", ""], W)
 
 for f in folders:

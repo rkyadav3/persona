@@ -43,7 +43,7 @@ def list_view():
             st.rerun()
     posts = store.posts()
     topics = {t["id"]: t["name"] for t in store.topics()}
-    W = [5, 2, 1, 2, 1]
+    W = [5, 2, 1.6, 2, 1.2]
     table_header(["Title", "Topic", "Status", "Updated", ""], W)
     if not posts:
         st.info("No posts yet. Write your first one.")
