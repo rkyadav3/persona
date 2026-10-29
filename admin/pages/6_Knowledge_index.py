@@ -8,6 +8,9 @@ from lib.config import secret
 from lib.db import sb
 from lib.embed import MODEL
 from lib.search import search
+from lib.theme import apply_theme
+
+apply_theme()
 
 st.title("Knowledge index")
 st.caption("Published files and posts are split into chunks, turned into vectors, and stored in Supabase. The website searches this index. Drafts are never indexed.")
