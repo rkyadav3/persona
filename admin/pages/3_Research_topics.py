@@ -88,7 +88,7 @@ else:
                             unsafe_allow_html=True)
             for t in topics:
                 c1, c2 = st.columns([3, 2])
-                if c1.button(t["name"], key=f"to{t['id']}", use_container_width=True):
+                if c1.button(t["name"], key=f"lk_to{t['id']}", use_container_width=True):
                     ss.topic_open = t["id"]
                     st.rerun()
                 c2.markdown(f'<span class="muted">{t["files"]} files, {t["posts"]} posts</span>', unsafe_allow_html=True)

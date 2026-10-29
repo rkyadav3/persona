@@ -34,6 +34,13 @@ a { color: var(--accent); }
 [data-baseweb="input"], [data-baseweb="textarea"], [data-baseweb="select"] > div { border-radius: var(--r) !important; border-color: var(--line) !important; background: #fff !important; }
 [data-testid="stWidgetLabel"] p { font-size: 13px; color: var(--muted); }
 
+/* text-link style (keys starting lk_), popover triggers, row hairlines */
+[class*="st-key-lk_"] button { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; min-height: 0 !important; color: var(--accent) !important; font-weight: 500; }
+[class*="st-key-lk_"] button:hover { text-decoration: underline; }
+[data-testid="stMain"] [data-testid="stPopover"] button { background: transparent; border: 0; padding: 0 4px; min-height: 0; color: var(--accent); }
+hr.rowline { margin: 0; border: 0; border-top: 1px solid var(--line); }
+[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlock"] { gap: .5rem; }
+
 /* stat tiles, pills, crumbs, table head */
 .stats { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0 18px; }
 .stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 20px; }

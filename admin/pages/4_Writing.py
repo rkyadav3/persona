@@ -49,7 +49,7 @@ def list_view():
         st.info("No posts yet. Write your first one.")
     for p in posts:
         c1, c2, c3, c4, c5 = st.columns(W)
-        if c1.button(p["title"], key=f"p{p['id']}", use_container_width=True):
+        if c1.button(p["title"], key=f"lk_p{p['id']}", use_container_width=True):
             ss.post_id = p["id"]
             st.rerun()
         c2.write(topics.get(p["topic_id"], ""))
