@@ -5,53 +5,25 @@ import streamlit as st
 
 _CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:wght@600&display=swap');
-:root { --bg:#eceee9; --panel:#f8f9f6; --ink:#1b2a2f; --muted:#66767a; --line:#d5dad4; --accent:#2f6f62; --danger:#a23b32; --r:6px; }
-html, body, [class*="css"] { font-family: Figtree, system-ui, sans-serif; font-size: 15px; }
-.stApp { background: var(--bg); color: var(--ink); }
-.block-container { padding: 28px 36px; max-width: 1300px; }
-h1 { font: 700 26px Figtree, sans-serif !important; margin: 0 0 16px; padding: 0; color: var(--ink); }
-h2, h3 { font: 600 16px Figtree, sans-serif !important; color: var(--ink); padding: 0; }
-a { color: var(--accent); }
-
-/* sidebar = the dark "Studio" rail */
-[data-testid="stSidebar"] { background: var(--ink); width: 210px !important; min-width: 210px !important; }
-[data-testid="stSidebarNav"]::before { content: "Studio"; display: block; font: 600 22px Newsreader, serif; color: #fff; padding: 22px 16px 14px; }
-[data-testid="stSidebarNav"] a { border-radius: var(--r); color: #c9d3cd; }
-[data-testid="stSidebarNav"] a span { color: inherit !important; }
-[data-testid="stSidebarNav"] a:hover, [data-testid="stSidebarNav"] a[aria-current="page"] { background: #2a3d43; color: #fff; }
-[data-testid="stSidebar"] .stButton > button { background: transparent; color: #9fb3ab; border: 1px solid #2a3d43; }
-[data-testid="stSidebar"] hr { border-color: #2a3d43; }
-
-/* cards, buttons, inputs */
-[data-testid="stVerticalBlockBorderWrapper"] { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
-.stButton > button, .stDownloadButton > button, [data-testid="stLinkButton"] a, [data-testid="stPageLink"] a {
-  border-radius: var(--r); border: 1px solid var(--line); background: #fff; color: var(--ink); font-weight: 500; font-size: 14px; }
-.stButton > button:hover, [data-testid="stPageLink"] a:hover { background: #f0f3ee; border-color: var(--line); color: var(--ink); }
-.stButton > button[kind="primary"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.stButton > button { justify-content: flex-start; text-align: left; min-height: 2.3rem; }
-.stButton > button p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-[data-baseweb="input"], [data-baseweb="textarea"], [data-baseweb="select"] > div { border-radius: var(--r) !important; border-color: var(--line) !important; background: #fff !important; }
-[data-testid="stWidgetLabel"] p { font-size: 13px; color: var(--muted); }
-
-/* text-link style (keys starting lk_), popover triggers, row hairlines */
-[class*="st-key-lk_"] button { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; min-height: 0 !important; color: var(--accent) !important; font-weight: 500; }
-[class*="st-key-lk_"] button:hover { text-decoration: underline; }
-[data-testid="stMain"] [data-testid="stPopover"] button { background: transparent; border: 0; padding: 0 4px; min-height: 0; color: var(--accent); }
-hr.rowline { margin: 0; border: 0; border-top: 1px solid var(--line); }
-[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlock"] { gap: .5rem; }
-
-/* stat tiles, pills, crumbs, table head */
-.stats { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0 18px; }
-.stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 20px; }
-.stat b { font-size: 28px; margin-right: 6px; }
-.stat small { display: block; color: var(--muted); }
-.crumbs { color: var(--muted); margin: 0 0 12px; }
-.crumbs b { color: var(--ink); font-weight: 500; }
-.pill { display: inline-block; white-space: nowrap; font-size: 12px; padding: 2px 8px; border-radius: 99px; background: #dde5df; }
-.pill.draft { background: #f1e4c3; }
-.muted { color: var(--muted); }
-.th { font-size: 13px; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--line); padding: 4px 0 8px; }
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Newsreader:wght@500;600&display=swap');
+html, body, [class*="css"] { font-family: 'Figtree', system-ui, sans-serif; }
+h1, h2, h3 { font-family: 'Newsreader', Georgia, serif !important; color: #1b2a2f; letter-spacing: -0.01em; }
+.block-container { padding-top: 2rem; max-width: 1200px; }
+[data-testid="stVerticalBlockBorderWrapper"] { background: #fff; border-radius: 12px; border-color: #e3e0d6; }
+.stButton > button, .stDownloadButton > button,
+[data-testid="stLinkButton"] a, [data-testid="stPageLink"] a { border-radius: 8px; }
+.stats { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0 20px; }
+.stat { background: #fff; border: 1px solid #e3e0d6; border-radius: 12px; padding: 16px 24px; min-width: 180px; }
+.stat b { font-family: 'Newsreader', Georgia, serif; font-size: 2.1rem; margin-right: 6px; }
+.stat small { display: block; color: #6b7a7e; margin-top: 2px; }
+.crumbs { color: #6b7a7e; font-size: .92rem; margin: 2px 0 14px; }
+.crumbs b { color: #1b2a2f; font-weight: 600; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+.pill.published { background: #dff2e4; color: #1d6b3a; }
+.pill.draft { background: #fdf0c9; color: #8a6410; }
+.muted { color: #6b7a7e; }
+.th { color: #6b7a7e; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+      border-bottom: 1px solid #e3e0d6; padding-bottom: 6px; }
 </style>
 """
 

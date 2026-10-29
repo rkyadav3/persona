@@ -5,12 +5,13 @@ from lib.auth import require_login
 require_login()
 from lib import store
 from lib.theme import apply_theme, esc, stats
+from lib.auth import current_user_id
 from lib.walk import all_files
 
 apply_theme()
 ss = st.session_state
 
-files = all_files()
+files = all_files(current_user_id())
 posts = store.posts()
 topics = store.topics()
 total_bytes = sum((f.get("size") or 0) for f in files)

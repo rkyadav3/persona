@@ -89,17 +89,16 @@ with srch:
     q = st.text_input("Search", key="q", placeholder="Search names and contents", label_visibility="collapsed")
 with btn:
     st.write("")
-    if st.button("Add files", type="primary", key="hdr_add"):
-        st.switch_page("pages/2_Add_files.py")
+    st.page_link("pages/2_Add_files.py", label="Add files", icon=":material/add:")
 
 # ---- clickable breadcrumb: All files / a / b
 crumbs = store.breadcrumbs(ss.folder)
 cc = st.columns([1] * (len(crumbs) + 1) + [max(1, 8 - len(crumbs))])
-if cc[0].button("All files", key="lk_cr_root"):
+if cc[0].button("All files", key="cr_root"):
     ss.folder, ss.open_file = None, None
     st.rerun()
 for i, c in enumerate(crumbs, 1):
-    if cc[i].button(f"/ {c['name']}", key=f"lk_cr{c['id']}"):
+    if cc[i].button(f"/ {c['name']}", key=f"cr{c['id']}"):
         ss.folder, ss.open_file = c["id"], None
         st.rerun()
 if q:
@@ -112,15 +111,13 @@ folders = [] if q else store.children(ss.folder)
 files = store.search_files(q) if q else store.list_files(ss.folder)
 topics = {t["id"]: t["name"] for t in store.topics()}
 
-# ---- table (one panel, rows separated by hairlines)
-W = [5, 2, 1.6, 1, 2]
-panel = st.container(border=True)
-panel.__enter__()
+# ---- table
+W = [5, 2, 1, 1, 2]
 table_header(["Name", "Topic", "Status", "Size", ""], W)
 
 for f in folders:
     c1, c2, c3, c4, c5 = st.columns(W)
-    if c1.button(f"📁 {f['name']}", key=f"lk_f{f['id']}", use_container_width=True):
+    if c1.button(f"📁 {f['name']}", key=f"f{f['id']}", use_container_width=True):
         ss.folder, ss.open_file = f["id"], None
         st.rerun()
     with c5:
@@ -135,11 +132,10 @@ for f in folders:
             if st.button("Delete folder", key=f"fd{f['id']}"):
                 store.delete_folder(f["id"])
                 st.rerun()
-    st.markdown('<hr class="rowline">', unsafe_allow_html=True)
 
 for f in files[:200]:
     c1, c2, c3, c4, c5 = st.columns(W)
-    if c1.button(f["name"], key=f"lk_o{f['id']}", use_container_width=True):
+    if c1.button(f["name"], key=f"o{f['id']}", use_container_width=True):
         ss.open_file = f["id"]
         st.rerun()
     c2.write(topics.get(f["topic_id"], ""))
@@ -152,9 +148,7 @@ for f in files[:200]:
             if ss.open_file == f["id"]:
                 ss.open_file = None
             st.rerun()
-    st.markdown('<hr class="rowline">', unsafe_allow_html=True)
 
-panel.__exit__(None, None, None)
 if not files:
     if q:
         st.info("No files match your search.")

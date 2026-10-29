@@ -5,6 +5,7 @@ from lib.auth import require_login
 require_login()
 from lib import store
 from lib.theme import apply_theme, esc, pill
+from lib.auth import current_user_id
 from lib.walk import all_files
 
 apply_theme()
@@ -34,7 +35,7 @@ def detail(tid):
                 st.rerun()
     with right:
         with st.container(border=True):
-            files = [f for f in all_files() if f.get("topic_id") == tid]
+            files = [f for f in all_files(current_user_id()) if f.get("topic_id") == tid]
             posts = [p for p in store.posts() if p.get("topic_id") == tid]
             st.subheader("Files")
             if not files:
